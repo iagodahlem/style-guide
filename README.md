@@ -2,6 +2,17 @@
 
 Set of configs (ESLint, Editorconfig, Prettier) to use on my own projects.
 
+## Plugins
+
+```sh
+yarn add -D \
+  eslint-config-airbnb \
+  eslint-plugin-cypress \
+  eslint-plugin-import \
+  eslint-plugin-jsx-a11y \
+  eslint-plugin-react
+```
+
 ## ESLint
 
 ```json
@@ -9,23 +20,28 @@ Set of configs (ESLint, Editorconfig, Prettier) to use on my own projects.
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "jest": true
+    "jest": true,
+    "cypress/globals": true
   },
-  "plugins": ["react", "jsx-a11y", "import"],
-  "extends": "airbnb",
+  "plugins": ["react", "jsx-a11y", "import", "cypress"],
+  "extends": ["airbnb", "react-app", "plugin:cypress/recommended"],
   "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "semi": ["error", "never"],
     "comma-dangle": ["error", "always-multiline"],
     "consistent-return": [0],
+    "no-use-before-define": [0],
     "global-require": "off",
+    "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
-    "jsx-quotes": ["error", "prefer-single"],
-    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
-    "no-use-before-define": ["nofunc"],
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-one-expression-per-line": [0],
-    "semi": ["error", "never"]
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "object-curly-newline": ["error", { "consistent": true }]
   }
 }
+
 ```
 
 ## Editorconfig
